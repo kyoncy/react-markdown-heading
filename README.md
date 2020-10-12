@@ -23,7 +23,7 @@ render(
 )
 ```
 
-<img src="https://i.imgur.com/7G1VSns.png" width="100%" height="auto" style="border: solid 1px" alt="screen shot" />
+<kbd><img src="https://i.imgur.com/7G1VSns.png" width="100%" height="auto" alt="screen shot" /></kbd>
 
 ## Option
 
