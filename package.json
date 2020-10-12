@@ -1,0 +1,33 @@
+{
+  "name": "react-markdown-heading",
+  "version": "0.1.0",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kyoncy/react-markdown-heading.git"
+  },
+  "author": "kyoncy",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "webpack-dev-server",
+    "prepublishOnly": "npm run build"
+  },
+  "devDependencies": {
+    "@types/react": "16.9.52",
+    "@types/react-dom": "16.9.8",
+    "html-webpack-plugin": "4.5.0",
+    "mdast-util-from-markdown": "0.8.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "ts-loader": "8.0.4",
+    "ts-node": "9.0.0",
+    "typescript": "4.0.3",
+    "webpack": "4.44.2",
+    "webpack-cli": "3.3.12",
+    "webpack-dev-server": "3.11.0"
+  }
+}
