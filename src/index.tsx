@@ -1,3 +1,3 @@
-import ReactMarkdownHeading from "./component/ReactMarkdownHeading";
+import ReactMarkdownHeading from './component/ReactMarkdownHeading'
 
-export default ReactMarkdownHeading;
+export default ReactMarkdownHeading

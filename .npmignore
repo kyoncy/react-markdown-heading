@@ -1,4 +1,6 @@
 src
 example
 .gitignore
+.prettierrc
 webpack.config.js
+.vscode

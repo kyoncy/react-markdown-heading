@@ -10,8 +10,5 @@
     "esModuleInterop": true,
     "jsx": "react"
   },
-  "exclude": [
-    "example",
-    "dist"
-  ]
+  "exclude": ["example", "dist"]
 }

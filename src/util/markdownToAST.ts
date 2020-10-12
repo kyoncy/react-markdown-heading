@@ -1,8 +1,8 @@
-import fromMarkdown from "mdast-util-from-markdown";
-import { Content } from "mdast";
+import fromMarkdown from 'mdast-util-from-markdown'
+import { Content } from 'mdast'
 
 const markdownToAST = (markdown: string): Content[] => {
-  return fromMarkdown(markdown).children;
+  return fromMarkdown(markdown).children
 }
 
-export default markdownToAST;
+export default markdownToAST
