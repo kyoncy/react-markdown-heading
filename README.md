@@ -2,6 +2,8 @@
 
 Render markdown headings to sidebar.
 
+[![npm version](https://badge.fury.io/js/react-markdown-heading.svg)](https://badge.fury.io/js/react-markdown-heading)
+
 ## Install
 
 ```
