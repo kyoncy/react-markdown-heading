@@ -5,7 +5,12 @@ import ReactMarkdownHeading from '../../src/index'
 const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
 
 const App = () => (
-  <ReactMarkdownHeading markdown={markdown} ulClassName="ul" liClassName="li" />
+  <ReactMarkdownHeading
+    markdown={markdown}
+    ulClassName="ul"
+    liClassName="li"
+    hyperlink={true}
+  />
 )
 
 render(<App />, document.getElementById('root'))

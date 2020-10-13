@@ -20,7 +20,12 @@ import ReactMarkdownHeading from 'react-markdown-heading'
 const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
 
 render(
-  <ReactMarkdownHeading markdown={markdown} />,
+  <ReactMarkdownHeading
+    markdown={markdown}
+    ulClassName="ul"
+    liClassName="li"
+    hyperlink={true}
+  />,
   document.getElementById('root')
 )
 ```
@@ -32,3 +37,4 @@ render(
 - `markdown` - _string_, The Markdown source to parse (**required**)
 - `ulClassName` - _string_, Class name of the ul element
 - `liClassName` - _string_, Class name of the li element
+- `hyperlink` - _boolean_, Add hyperlink to text

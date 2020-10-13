@@ -6,13 +6,15 @@ interface HeadingProps {
   rootId?: number
   ulClassName?: string
   liClassName?: string
+  hyperlink?: boolean
 }
 
 const Heading: FC<HeadingProps> = ({
   headingList,
-  rootId,
+  rootId = 0,
   ulClassName,
   liClassName,
+  hyperlink = false,
 }) => {
   const filteredList = headingList.filter((item) => item.parentId === rootId)
 
@@ -24,12 +26,13 @@ const Heading: FC<HeadingProps> = ({
         const text = item.children[0].value as string
         return (
           <li key={index} className={liClassName}>
-            <a href={`#${text}`}>{text}</a>
+            {hyperlink ? <a href={`#${text}`}>{text}</a> : text}
             <Heading
               headingList={headingList}
               rootId={item.id}
               ulClassName={ulClassName}
               liClassName={liClassName}
+              hyperlink={hyperlink}
             />
           </li>
         )

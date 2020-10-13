@@ -8,12 +8,14 @@ interface ReactMarkdownHeadingProps {
   markdown: string
   ulClassName?: string
   liClassName?: string
+  hyperlink?: boolean
 }
 
 const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
   markdown,
   ulClassName,
   liClassName,
+  hyperlink = false,
 }) => {
   const ast = markdownToAST(markdown)
   const headingAst = pickHeadingFromAST(ast)
@@ -22,9 +24,9 @@ const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
   return (
     <Heading
       headingList={headingList}
-      rootId={0}
       ulClassName={ulClassName}
       liClassName={liClassName}
+      hyperlink={hyperlink}
     />
   )
 }
