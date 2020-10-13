@@ -3,6 +3,8 @@
 Render markdown headings to sidebar.
 
 [![npm version](https://badge.fury.io/js/react-markdown-heading.svg)](https://badge.fury.io/js/react-markdown-heading)
+[![install size](https://packagephobia.com/badge?p=react-markdown-heading)](https://packagephobia.com/result?p=react-markdown-heading)
+[![minzipped size](https://badgen.net/bundlephobia/minzip/react-markdown-heading)](https://bundlephobia.com/result?p=react-markdown-heading)
 
 ## Install
 
