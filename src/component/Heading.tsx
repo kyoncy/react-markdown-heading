@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
-import { HeadingWithParentId } from '../util/parseHeadingAST'
+import { HeadingWithId } from '../util/parseHeadingAST'
 
 interface HeadingProps {
-  headingList: HeadingWithParentId[]
+  headingList: HeadingWithId[]
   rootId?: number
   ulClassName?: string
   liClassName?: string

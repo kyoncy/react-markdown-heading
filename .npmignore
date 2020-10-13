@@ -1,6 +1,8 @@
 src
 example
+test
 .gitignore
 .prettierrc
+jest.config.js
 webpack.config.js
 .vscode

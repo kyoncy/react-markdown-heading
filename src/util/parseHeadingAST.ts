@@ -1,16 +1,16 @@
 import { Heading } from 'mdast'
 
-export interface HeadingWithParentId extends Heading {
+export interface HeadingWithId extends Heading {
   id: number
   parentId: number
 }
 
-const parseHeadingAST = (headingAST: Heading[]): HeadingWithParentId[] => {
-  const headingList: HeadingWithParentId[] = []
+const parseHeadingAST = (headingAST: Heading[]): HeadingWithId[] => {
+  const headingList: HeadingWithId[] = []
 
   let currentDepth = 0
   let currentParent = 0
-  let currentHeading: HeadingWithParentId
+  let currentHeading: HeadingWithId
 
   headingAST.forEach((item, index) => {
     currentHeading = Object.assign(item, { id: index + 1, parentId: 0 })
