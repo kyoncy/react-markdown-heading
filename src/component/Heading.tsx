@@ -1,5 +1,6 @@
 import React, { FC } from 'react'
 import { HeadingWithId } from '../util/parseHeadingAST'
+import extractText from '../util/extractText'
 
 interface HeadingProps {
   headingList: HeadingWithId[]
@@ -27,20 +28,19 @@ const Heading: FC<HeadingProps> = ({
   return (
     <ul className={ulClassName}>
       {filteredList.map((item, index) => {
-        const text = item.children[0].value as string
-        const link = text.replace(/\s+/g, blankSpaceReplaceText)
+        const content = extractText(item.children[0], blankSpaceReplaceText)
 
-        const content = hyperlink ? (
-          <a href={`#${link}`} className={anchorClassName}>
-            {text}
+        const element = hyperlink ? (
+          <a href={content.href} className={anchorClassName}>
+            {content.text}
           </a>
         ) : (
-          text
+          content.text
         )
 
         return (
           <li key={index} className={liClassName}>
-            {content}
+            {element}
             <Heading
               headingList={headingList}
               rootId={item.id}

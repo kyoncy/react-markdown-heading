@@ -10,13 +10,16 @@ configure({ adapter: new Adapter() })
 
 describe('Heading component', () => {
   const markdown = '# h1'
-
-  const ast = markdownToAST(markdown)
-  const headingAst = pickHeadingFromAST(ast)
-  const headingList = parseHeadingAST(headingAst)
   const rootId = 0
 
+  function markdownToHeadingList(markdown: string) {
+    const ast = markdownToAST(markdown)
+    const headingAst = pickHeadingFromAST(ast)
+    return parseHeadingAST(headingAst)
+  }
+
   test('display anchor', () => {
+    const headingList = markdownToHeadingList(markdown)
     let component = mount(
       <Heading
         headingList={headingList}
@@ -27,12 +30,49 @@ describe('Heading component', () => {
     )
     expect(component.find('a')).toHaveLength(1)
     expect(component.find('.anchor')).toHaveLength(1)
+    expect(component.find('a').prop('href')).toEqual('#h1')
 
     component = mount(<Heading headingList={headingList} rootId={rootId} />)
     expect(component.find('a')).toHaveLength(0)
   })
 
+  test('heading text has blank space', () => {
+    const markdown = '# h 1'
+    const headingList = markdownToHeadingList(markdown)
+
+    const component = mount(
+      <Heading headingList={headingList} rootId={rootId} hyperlink={true} />
+    )
+    expect(component.find('a').prop('href')).toEqual('#h-1')
+  })
+
+  test('set blankSpaceReplaceText', () => {
+    const markdown = '# h 1'
+    const headingList = markdownToHeadingList(markdown)
+
+    const component = mount(
+      <Heading
+        headingList={headingList}
+        rootId={rootId}
+        hyperlink={true}
+        blankSpaceReplaceText="_"
+      />
+    )
+    expect(component.find('a').prop('href')).toEqual('#h_1')
+  })
+
+  test('custom hyperlink', () => {
+    const markdown = '# [h1](#foo)'
+    const headingList = markdownToHeadingList(markdown)
+
+    const component = mount(
+      <Heading headingList={headingList} rootId={rootId} hyperlink={true} />
+    )
+    expect(component.find('a').prop('href')).toEqual('#foo')
+  })
+
   test('display classname', () => {
+    const headingList = markdownToHeadingList(markdown)
     let component = mount(
       <Heading
         headingList={headingList}
@@ -54,10 +94,7 @@ describe('Heading component', () => {
 
   test('display Heading', () => {
     const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
-
-    const ast = markdownToAST(markdown)
-    const headingAst = pickHeadingFromAST(ast)
-    const headingList = parseHeadingAST(headingAst)
+    const headingList = markdownToHeadingList(markdown)
     const rootId = 0
 
     const component = mount(
