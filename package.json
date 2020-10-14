@@ -1,6 +1,6 @@
 {
   "name": "react-markdown-heading",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "main": "dist/index.js",
   "repository": {
     "type": "git",
@@ -16,6 +16,7 @@
     "start": "webpack-dev-server",
     "minify": "sh bin/minify.sh",
     "test": "jest",
+    "test:watch": "jest --watch",
     "prepublishOnly": "run-s build minify"
   },
   "dependencies": {

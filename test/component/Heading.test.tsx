@@ -9,6 +9,49 @@ import parseHeadingAST from '../../src/util/parseHeadingAST'
 configure({ adapter: new Adapter() })
 
 describe('Heading component', () => {
+  const markdown = '# h1'
+
+  const ast = markdownToAST(markdown)
+  const headingAst = pickHeadingFromAST(ast)
+  const headingList = parseHeadingAST(headingAst)
+  const rootId = 0
+
+  test('display anchor', () => {
+    let component = mount(
+      <Heading
+        headingList={headingList}
+        rootId={rootId}
+        hyperlink={true}
+        anchorClassName={'anchor'}
+      />
+    )
+    expect(component.find('a')).toHaveLength(1)
+    expect(component.find('.anchor')).toHaveLength(1)
+
+    component = mount(<Heading headingList={headingList} rootId={rootId} />)
+    expect(component.find('a')).toHaveLength(0)
+  })
+
+  test('display classname', () => {
+    let component = mount(
+      <Heading
+        headingList={headingList}
+        rootId={rootId}
+        ulClassName={'ul'}
+        liClassName={'li'}
+        anchorClassName={'anchor'}
+      />
+    )
+    expect(component.find('.ul')).toHaveLength(1)
+    expect(component.find('.li')).toHaveLength(1)
+    expect(component.find('.anchor')).toHaveLength(0) // Because hyperlink is false
+
+    component = mount(<Heading headingList={headingList} rootId={rootId} />)
+    expect(component.find('.ul')).toHaveLength(0)
+    expect(component.find('.li')).toHaveLength(0)
+    expect(component.find('.anchor')).toHaveLength(0)
+  })
+
   test('display Heading', () => {
     const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
 

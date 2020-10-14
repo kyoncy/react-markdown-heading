@@ -26,7 +26,9 @@ render(
     markdown={markdown}
     ulClassName="ul"
     liClassName="li"
+    anchorClassName="anchor"
     hyperlink={true}
+    blankSpaceReplaceText={'_'}
   />,
   document.getElementById('root')
 )
@@ -37,6 +39,9 @@ render(
 ## Option
 
 - `markdown` - _string_, The Markdown source to parse (**required**)
-- `ulClassName` - _string_, Class name of the ul element
-- `liClassName` - _string_, Class name of the li element
-- `hyperlink` - _boolean_, Add hyperlink to text
+- `ulClassName` - _string_, Class name of the ul tag
+- `liClassName` - _string_, Class name of the li tag
+- `anchorClassName` - \__string_, Class name of the a tag
+- `hyperlink` - _boolean_, Add hyperlink to text (default `false`)
+- `blankSpaceReplaceText` - _string_, Replace blank space in hyperlink to this (default `-`)
+  - The markdown `## foo bar`'s hyperlink is `href="#foo-bar"`
