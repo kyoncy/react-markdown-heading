@@ -1,11 +1,9 @@
-import markdownToAST from '../../src/util/markdownToAST'
-import pickHeadingFromAST from '../../src/util/pickHeadingFromAST'
+import markdownToHeading from '../../src/util/markdownToHeading'
 import parseHeadingAST from '../../src/util/parseHeadingAST'
 
-describe('pickHeadingFromAST', () => {
+describe('parseHeadingAST', () => {
   function markdownToHeadingList(markdown: string) {
-    const ast = markdownToAST(markdown)
-    const headingAst = pickHeadingFromAST(ast)
+    const headingAst = markdownToHeading(markdown)
     return parseHeadingAST(headingAst)
   }
 
@@ -14,7 +12,6 @@ describe('pickHeadingFromAST', () => {
     const headingList = markdownToHeadingList(markdown)
 
     expect(headingList).toHaveLength(1)
-    expect(headingList[0].type).toEqual('heading')
     expect(headingList[0].parentId).toEqual(0)
   })
 
@@ -25,7 +22,6 @@ describe('pickHeadingFromAST', () => {
 
     expect(headingList).toHaveLength(6)
     headingList.forEach((item, index) => {
-      expect(item.type).toEqual('heading')
       expect(item.parentId).toEqual(parentIdList[index])
     })
   })

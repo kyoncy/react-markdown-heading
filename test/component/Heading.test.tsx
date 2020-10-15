@@ -2,8 +2,7 @@ import React from 'react'
 import { configure, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Heading from '../../src/component/Heading'
-import markdownToAST from '../../src/util/markdownToAST'
-import pickHeadingFromAST from '../../src/util/pickHeadingFromAST'
+import markdownToHeading from '../../src/util/markdownToHeading'
 import parseHeadingAST from '../../src/util/parseHeadingAST'
 
 configure({ adapter: new Adapter() })
@@ -13,8 +12,7 @@ describe('Heading component', () => {
   const rootId = 0
 
   function markdownToHeadingList(markdown: string) {
-    const ast = markdownToAST(markdown)
-    const headingAst = pickHeadingFromAST(ast)
+    const headingAst = markdownToHeading(markdown)
     return parseHeadingAST(headingAst)
   }
 

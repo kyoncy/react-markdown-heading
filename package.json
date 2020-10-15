@@ -1,7 +1,7 @@
 {
   "name": "react-markdown-heading",
   "description": "Render markdown heading as React component",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "keywords": [
     "markdown",
     "react",
@@ -24,11 +24,10 @@
     "minify": "sh bin/minify.sh",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepublishOnly": "run-s build minify"
+    "preversion": "npm t",
+    "prepublishOnly": "run-s test build minify"
   },
-  "dependencies": {
-    "mdast-util-from-markdown": "0.8.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/enzyme": "3.10.7",
     "@types/enzyme-adapter-react-16": "1.0.6",
@@ -45,7 +44,6 @@
     "terser": "5.3.5",
     "ts-jest": "26.4.1",
     "ts-loader": "8.0.4",
-    "ts-node": "9.0.0",
     "typescript": "4.0.3",
     "webpack": "4.44.2",
     "webpack-cli": "3.3.12",

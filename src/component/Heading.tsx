@@ -28,7 +28,7 @@ const Heading: FC<HeadingProps> = ({
   return (
     <ul className={ulClassName}>
       {filteredList.map((item, index) => {
-        const content = extractText(item.children[0], blankSpaceReplaceText)
+        const content = extractText(item, blankSpaceReplaceText)
 
         const element = hyperlink ? (
           <a href={content.href} className={anchorClassName}>
