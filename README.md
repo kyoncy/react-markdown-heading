@@ -22,14 +22,7 @@ import ReactMarkdownHeading from 'react-markdown-heading'
 const markdown = '## [h2](#foo)\n### h3\n#### h4\n### h3\n# h1\n### h3'
 
 render(
-  <ReactMarkdownHeading
-    markdown={markdown}
-    ulClassName="ul"
-    liClassName="li"
-    anchorClassName="anchor"
-    hyperlink={true}
-    blankSpaceReplaceText={'_'}
-  />,
+  <ReactMarkdownHeading markdown={markdown} hyperlink={true} />,
   document.getElementById('root')
 )
 ```
@@ -39,9 +32,9 @@ render(
 ## Option
 
 - `markdown` - _string_, The Markdown source to parse (**required**)
-- `ulClassName` - _string_, Class name of the ul tag
-- `liClassName` - _string_, Class name of the li tag
-- `anchorClassName` - \__string_, Class name of the a tag
+- `ulClassName` - _string_, Class name of the ul tag (optional)
+- `liClassName` - _string_, Class name of the li tag (optional)
+- `anchorClassName` - \__string_, Class name of the a tag (optional)
 - `hyperlink` - _boolean_, Add hyperlink to text (default `false`)
 - `blankSpaceReplaceText` - _string_, Replace blank space in hyperlink to this (default `-`)
   - The markdown `## foo bar`'s hyperlink is `href="#foo-bar"`

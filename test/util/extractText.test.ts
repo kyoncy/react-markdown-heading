@@ -68,7 +68,7 @@ describe('extractText', () => {
     expect(content.href).toEqual('')
   })
 
-  test('custom hyperlink with text part1', () => {
+  test.skip('custom hyperlink with text part1', () => {
     const markdown = '# [h1](#foo) bar'
     const headingList = markdownToHeadingList(markdown)
 
@@ -78,7 +78,7 @@ describe('extractText', () => {
     expect(content.href).toEqual('#foo')
   })
 
-  test('custom hyperlink with text part2', () => {
+  test.skip('custom hyperlink with text part2', () => {
     const markdown = '# bar [h1](#foo)'
     const headingList = markdownToHeadingList(markdown)
 
