@@ -1,4 +1,4 @@
-import { PhrasingContent } from 'mdast'
+import { HeadingWithId } from '../util/parseHeadingAST'
 
 type content = {
   text: string
@@ -6,27 +6,15 @@ type content = {
 }
 
 const extractText = (
-  content: PhrasingContent,
+  content: HeadingWithId,
   blankSpaceReplaceText = '-'
 ): content => {
-  if (content.type === 'text') {
-    const text = content.value
-    return {
-      text: text,
-      href: `#${text.replace(/\s+/g, blankSpaceReplaceText)}`,
-    }
-  } else if (content.type === 'link') {
-    const text = content.children[0].value as string
-    return {
-      text: text,
-      href: content.url,
-    }
-  } else {
-    return {
-      text: '',
-      href: '',
-    }
+  const text = content.text
+  return {
+    text: text,
+    href: `#${text.replace(/\s+/g, blankSpaceReplaceText)}`,
   }
+  // TODO: add case content type link
 }
 
 export default extractText

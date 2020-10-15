@@ -1,4 +1,4 @@
-import { Heading } from 'mdast'
+import { Heading } from '../types/Heading'
 
 export interface HeadingWithId extends Heading {
   id: number

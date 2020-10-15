@@ -26,9 +26,7 @@
     "test:watch": "jest --watch",
     "prepublishOnly": "run-s build minify"
   },
-  "dependencies": {
-    "mdast-util-from-markdown": "0.8.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/enzyme": "3.10.7",
     "@types/enzyme-adapter-react-16": "1.0.6",
