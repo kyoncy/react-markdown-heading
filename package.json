@@ -24,7 +24,8 @@
     "minify": "sh bin/minify.sh",
     "test": "jest",
     "test:watch": "jest --watch",
-    "prepublishOnly": "run-s build minify"
+    "preversion": "npm t",
+    "prepublishOnly": "run-s test build minify"
   },
   "dependencies": {},
   "devDependencies": {
