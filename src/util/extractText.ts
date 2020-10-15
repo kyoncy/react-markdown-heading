@@ -16,7 +16,7 @@ const extractText = (
   const markdownLink = /\[(.+)\]\((.+)?\)/gi.exec(link.text)
   if (markdownLink) {
     link.text = markdownLink[1]
-    link.href = markdownLink[2]
+    link.href = markdownLink[2] || ''
   }
 
   return link

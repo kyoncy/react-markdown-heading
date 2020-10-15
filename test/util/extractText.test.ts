@@ -48,8 +48,38 @@ describe('extractText', () => {
     expect(content.href).toEqual('#foo')
   })
 
-  test('custom hyperlink with text', () => {
+  test('custom hyperlink text is null', () => {
+    const markdown = '# [](#foo)'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item)
+    expect(content.text).toEqual('[](#foo)')
+    expect(content.href).toEqual('#[](#foo)')
+  })
+
+  test('custom hyperlink href is null', () => {
+    const markdown = '# [h1]()'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item)
+    expect(content.text).toEqual('h1')
+    expect(content.href).toEqual('')
+  })
+
+  test('custom hyperlink with text part1', () => {
     const markdown = '# [h1](#foo) bar'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item)
+    expect(content.text).toEqual('h1')
+    expect(content.href).toEqual('#foo')
+  })
+
+  test('custom hyperlink with text part2', () => {
+    const markdown = '# bar [h1](#foo)'
     const headingList = markdownToHeadingList(markdown)
 
     const item = headingList[0]
