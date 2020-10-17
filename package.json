@@ -9,23 +9,20 @@
     "typescript"
   ],
   "main": "dist/index.js",
+  "types": "index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/kyoncy/react-markdown-heading.git"
   },
   "author": "kyoncy <kyota.n.2014@gmail.com>",
   "license": "MIT",
-  "files": [
-    "dist"
-  ],
   "scripts": {
-    "build": "tsc",
+    "build": "esbuild src/index.tsx --bundle '--define:process.env.NODE_ENV=\"production\"' --minify --outfile=dist/index.js",
     "start": "webpack-dev-server",
-    "minify": "sh bin/minify.sh",
     "test": "jest",
     "test:watch": "jest --watch",
     "preversion": "npm t",
-    "prepublishOnly": "run-s test build minify"
+    "prepublishOnly": "run-s test build"
   },
   "dependencies": {},
   "devDependencies": {
@@ -36,6 +33,7 @@
     "@types/react-dom": "16.9.8",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
+    "esbuild": "0.7.16",
     "html-webpack-plugin": "4.5.0",
     "jest": "26.5.3",
     "npm-run-all": "4.1.5",
