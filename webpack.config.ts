@@ -1,7 +1,13 @@
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+import path from 'path'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import webpack from 'webpack'
+import webpackDevServer from 'webpack-dev-server'
 
-module.exports = {
+interface Configuration extends webpack.Configuration {
+  devServer?: webpackDevServer.Configuration
+}
+
+const config: Configuration = {
   mode: 'development',
   entry: path.resolve(__dirname, 'example/src/index.tsx'),
   module: {
@@ -27,3 +33,5 @@ module.exports = {
     compress: true,
   },
 }
+
+export default config
