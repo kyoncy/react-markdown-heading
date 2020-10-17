@@ -5,4 +5,5 @@ test
 .prettierrc
 jest.config.js
 webpack.config.js
+tsconfig.json
 .vscode

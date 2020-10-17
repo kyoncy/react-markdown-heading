@@ -34,7 +34,7 @@ render(
 - `markdown` - _string_, The Markdown source to parse (**required**)
 - `ulClassName` - _string_, Class name of the ul tag (optional)
 - `liClassName` - _string_, Class name of the li tag (optional)
-- `anchorClassName` - \__string_, Class name of the a tag (optional)
+- `anchorClassName` - _string_, Class name of the a tag (optional)
 - `hyperlink` - _boolean_, Add hyperlink to text (default `false`)
 - `blankSpaceReplaceText` - _string_, Replace blank space in hyperlink to this (default `-`)
   - The markdown `## foo bar`'s hyperlink is `href="#foo-bar"`
