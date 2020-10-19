@@ -1,4 +1,5 @@
 import calcHeadingDepth from '../../src/util/calcHeadingDepth'
+import { Heading } from '../../src/types/Heading'
 
 describe('calcHeadingDepth', () => {
   test('calc depth heading', () => {
@@ -32,6 +33,15 @@ describe('calcHeadingDepth', () => {
 })
 
 describe('calcHeadingDepth edge case', () => {
+  function testHeading(heading: Heading | null, depth: number, text: string) {
+    if (heading) {
+      expect(heading.depth).toEqual(depth)
+      expect(heading.text).toEqual(text)
+    } else {
+      expect(heading).toBeTruthy() // always failed
+    }
+  }
+
   test('"#h1" is null', () => {
     const markdown = '#h1'
     const heading = calcHeadingDepth(markdown)
@@ -57,47 +67,41 @@ describe('calcHeadingDepth edge case', () => {
     const markdown = '#  h1'
     const heading = calcHeadingDepth(markdown)
 
-    expect(heading.depth).toEqual(1)
-    expect(heading.text).toEqual('h1')
+    testHeading(heading, 1, 'h1')
   })
 
   test('"# h1 "\'s text is "h1"', () => {
     const markdown = '# h1 '
     const heading = calcHeadingDepth(markdown)
 
-    expect(heading.depth).toEqual(1)
-    expect(heading.text).toEqual('h1')
+    testHeading(heading, 1, 'h1')
   })
 
   test('"# this is h1"\'s text is "this is h1"', () => {
     const markdown = '# this is h1'
     const heading = calcHeadingDepth(markdown)
 
-    expect(heading.depth).toEqual(1)
-    expect(heading.text).toEqual('this is h1')
+    testHeading(heading, 1, 'this is h1')
   })
 
   test('"# h1  #"\'s text is "h1"', () => {
     const markdown = '# h1  #'
     const heading = calcHeadingDepth(markdown)
 
-    expect(heading.depth).toEqual(1)
-    expect(heading.text).toEqual('h1')
+    testHeading(heading, 1, 'h1')
   })
 
   test('"# h1 # "\'s text is "h1"', () => {
     const markdown = '# h1 # '
     const heading = calcHeadingDepth(markdown)
 
-    expect(heading.depth).toEqual(1)
-    expect(heading.text).toEqual('h1')
+    testHeading(heading, 1, 'h1')
   })
 
   test('"# h1 foo#"\'s text is "h1 foo#"', () => {
     const markdown = '# h1 foo#'
     const heading = calcHeadingDepth(markdown)
 
-    expect(heading.depth).toEqual(1)
-    expect(heading.text).toEqual('h1 foo#')
+    testHeading(heading, 1, 'h1 foo#')
   })
 })

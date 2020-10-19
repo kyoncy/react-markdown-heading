@@ -9,6 +9,5 @@
     "outDir": "dist",
     "esModuleInterop": true,
     "jsx": "react"
-  },
-  "exclude": ["example", "dist", "test"]
+  }
 }
