@@ -26,11 +26,13 @@ describe('Heading component', () => {
         anchorClassName={'anchor'}
       />
     )
+    expect(component.find('li')).toHaveLength(1)
     expect(component.find('a')).toHaveLength(1)
     expect(component.find('.anchor')).toHaveLength(1)
     expect(component.find('a').prop('href')).toEqual('#h1')
 
     component = mount(<Heading headingList={headingList} rootId={rootId} />)
+    expect(component.find('li')).toHaveLength(1)
     expect(component.find('a')).toHaveLength(0)
   })
 
@@ -42,6 +44,17 @@ describe('Heading component', () => {
       <Heading headingList={headingList} rootId={rootId} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h-1')
+  })
+
+  test('ignore heading in code block', () => {
+    const markdown =
+      '```markdown\n# h1\n## h2\n```\n\n```python\n# comment\n```'
+    const headingList = markdownToHeadingList(markdown)
+
+    const component = mount(
+      <Heading headingList={headingList} rootId={rootId} />
+    )
+    expect(component.find('li')).toHaveLength(0)
   })
 
   test('remove "#" from end of heading text', () => {

@@ -24,4 +24,11 @@ describe('markdownToHeading', () => {
       expect(item.depth).toEqual(depthes[index])
     })
   })
+
+  test('code block', () => {
+    const markdown = '```markdown\n# h1\n## h2\n```'
+    const headings = markdownToHeading(markdown)
+
+    expect(headings).toHaveLength(0)
+  })
 })
