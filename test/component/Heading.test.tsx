@@ -44,6 +44,16 @@ describe('Heading component', () => {
     expect(component.find('a').prop('href')).toEqual('#h-1')
   })
 
+  test('remove "#" from end of heading text', () => {
+    const markdown = '# h1 #####'
+    const headingList = markdownToHeadingList(markdown)
+
+    const component = mount(
+      <Heading headingList={headingList} rootId={rootId} hyperlink={true} />
+    )
+    expect(component.find('a').prop('href')).toEqual('#h1')
+  })
+
   test('set blankSpaceReplaceText', () => {
     const markdown = '# h 1'
     const headingList = markdownToHeadingList(markdown)

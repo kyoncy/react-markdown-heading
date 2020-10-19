@@ -30,3 +30,74 @@ describe('calcHeadingDepth', () => {
     expect(heading).toBeFalsy()
   })
 })
+
+describe('calcHeadingDepth edge case', () => {
+  test('"#h1" is null', () => {
+    const markdown = '#h1'
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading).toBeFalsy()
+  })
+
+  test('"#" is null', () => {
+    const markdown = '#'
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading).toBeFalsy()
+  })
+
+  test('"# " is null', () => {
+    const markdown = '# '
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading).toBeFalsy()
+  })
+
+  test('"#  h1"\'s text is "h1"', () => {
+    const markdown = '#  h1'
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading.depth).toEqual(1)
+    expect(heading.text).toEqual('h1')
+  })
+
+  test('"# h1 "\'s text is "h1"', () => {
+    const markdown = '# h1 '
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading.depth).toEqual(1)
+    expect(heading.text).toEqual('h1')
+  })
+
+  test('"# this is h1"\'s text is "this is h1"', () => {
+    const markdown = '# this is h1'
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading.depth).toEqual(1)
+    expect(heading.text).toEqual('this is h1')
+  })
+
+  test('"# h1  #"\'s text is "h1"', () => {
+    const markdown = '# h1  #'
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading.depth).toEqual(1)
+    expect(heading.text).toEqual('h1')
+  })
+
+  test('"# h1 # "\'s text is "h1"', () => {
+    const markdown = '# h1 # '
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading.depth).toEqual(1)
+    expect(heading.text).toEqual('h1')
+  })
+
+  test('"# h1 foo#"\'s text is "h1 foo#"', () => {
+    const markdown = '# h1 foo#'
+    const heading = calcHeadingDepth(markdown)
+
+    expect(heading.depth).toEqual(1)
+    expect(heading.text).toEqual('h1 foo#')
+  })
+})
