@@ -3,6 +3,7 @@ example
 test
 .gitignore
 .prettierrc
+jest.config.ts
 webpack.config.ts
 tsconfig.json
 .vscode
