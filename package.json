@@ -17,14 +17,16 @@
   "author": "kyoncy <kyota.n.2014@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild src/index.tsx --format=cjs --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --minify --outfile=dist/index.js",
+    "build": "esbuild src/index.ts --format=cjs --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --minify --outfile=dist/index.js",
     "start": "webpack serve",
     "test": "jest",
     "test:watch": "jest --watch",
     "preversion": "npm t",
     "prepublishOnly": "run-s test build"
   },
-  "dependencies": {},
+  "dependencies": {
+    "mdast-util-from-markdown": "0.8.1"
+  },
   "devDependencies": {
     "@types/enzyme": "3.10.7",
     "@types/enzyme-adapter-react-16": "1.0.6",
@@ -34,7 +36,7 @@
     "@types/webpack-dev-server": "3.11.0",
     "enzyme": "3.11.0",
     "enzyme-adapter-react-16": "1.15.5",
-    "esbuild": "0.7.17",
+    "esbuild": "0.7.19",
     "html-webpack-plugin": "4.5.0",
     "jest": "26.6.0",
     "npm-run-all": "4.1.5",

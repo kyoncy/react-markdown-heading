@@ -2,7 +2,8 @@ import React from 'react'
 import { configure, mount } from 'enzyme'
 import Adapter from 'enzyme-adapter-react-16'
 import Heading from '../../src/component/Heading'
-import markdownToHeading from '../../src/util/markdownToHeading'
+import markdownToAst from '../../src/util/markdownToAst'
+import pickHeadingFromAst from '../../src/util/pickHeadingFromAst'
 import parseHeadingAST from '../../src/util/parseHeadingAST'
 
 configure({ adapter: new Adapter() })
@@ -12,7 +13,7 @@ describe('Heading component', () => {
   const rootId = 0
 
   function markdownToHeadingList(markdown: string) {
-    const headingAst = markdownToHeading(markdown)
+    const headingAst = pickHeadingFromAst(markdownToAst(markdown))
     return parseHeadingAST(headingAst)
   }
 
@@ -89,7 +90,7 @@ describe('Heading component', () => {
     const component = mount(
       <Heading headingList={headingList} rootId={rootId} hyperlink={true} />
     )
-    expect(component.find('a').prop('href')).toEqual('#foo')
+    expect(component.find('a').prop('href')).toEqual('#h1')
   })
 
   test('display classname', () => {

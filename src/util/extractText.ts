@@ -1,4 +1,4 @@
-import { HeadingWithId } from '../util/parseHeadingAST'
+import { PhrasingContent } from 'mdast'
 
 type content = {
   text: string
@@ -6,18 +6,25 @@ type content = {
 }
 
 const extractText = (
-  content: HeadingWithId,
+  contents: PhrasingContent[],
   blankSpaceReplaceText = '-'
 ): content => {
-  const link: content = {
-    text: content.text,
-    href: `#${content.text.replace(/\s+/g, blankSpaceReplaceText)}`,
+  const link = {
+    text: '',
+    href: '#',
   }
-  const markdownLink = /\[(.+)\]\((.+)?\)/gi.exec(link.text)
-  if (markdownLink) {
-    link.text = markdownLink[1]
-    link.href = markdownLink[2] || ''
-  }
+
+  contents.forEach((content) => {
+    if (content.type === 'text') {
+      const text = content.value
+      link.text += text
+      link.href += text.replace(/\s+/g, blankSpaceReplaceText) 
+    } else if (content.type === 'link') {
+      const text = content.children[0]?.value as string
+      link.text += text || ''
+      link.href += text || 'none'
+    }
+  })
 
   return link
 }

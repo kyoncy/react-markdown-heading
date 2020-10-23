@@ -1,9 +1,10 @@
-import markdownToHeading from '../../src/util/markdownToHeading'
+import markdownToAst from '../../src/util/markdownToAst'
+import pickHeadingFromAst from '../../src/util/pickHeadingFromAst'
 import parseHeadingAST from '../../src/util/parseHeadingAST'
 
 describe('parseHeadingAST', () => {
   function markdownToHeadingList(markdown: string) {
-    const headingAst = markdownToHeading(markdown)
+    const headingAst = pickHeadingFromAst(markdownToAst(markdown))
     return parseHeadingAST(headingAst)
   }
 

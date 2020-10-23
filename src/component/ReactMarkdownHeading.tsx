@@ -1,7 +1,8 @@
 import React from 'react'
 import Heading from './Heading'
+import markdownToAST from '../util/markdownToAst'
+import pickHeadingFromAST from '../util/pickHeadingFromAst'
 import parseHeadingAST from '../util/parseHeadingAST'
-import markdownToHeading from '../util/markdownToHeading'
 
 interface ReactMarkdownHeadingProps {
   markdown: string
@@ -20,7 +21,7 @@ const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
   hyperlink,
   blankSpaceReplaceText,
 }) => {
-  const headingAst = markdownToHeading(markdown)
+  const headingAst = pickHeadingFromAST(markdownToAST(markdown))
   const headingList = parseHeadingAST(headingAst)
 
   return (
