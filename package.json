@@ -1,7 +1,7 @@
 {
   "name": "react-markdown-heading",
   "description": "Render markdown heading as React component",
-  "version": "0.7.0-0",
+  "version": "0.7.0",
   "keywords": [
     "markdown",
     "react",
