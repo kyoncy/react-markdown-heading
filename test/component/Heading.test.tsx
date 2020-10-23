@@ -10,7 +10,6 @@ configure({ adapter: new Adapter() })
 
 describe('Heading component', () => {
   const markdown = '# h1'
-  const rootId = 0
 
   function markdownToHeadingList(markdown: string) {
     const headingAst = pickHeadingFromAst(markdownToAst(markdown))
@@ -22,7 +21,6 @@ describe('Heading component', () => {
     let component = mount(
       <Heading
         headingList={headingList}
-        rootId={rootId}
         hyperlink={true}
         anchorClassName={'anchor'}
       />
@@ -32,7 +30,7 @@ describe('Heading component', () => {
     expect(component.find('.anchor')).toHaveLength(1)
     expect(component.find('a').prop('href')).toEqual('#h1')
 
-    component = mount(<Heading headingList={headingList} rootId={rootId} />)
+    component = mount(<Heading headingList={headingList} />)
     expect(component.find('li')).toHaveLength(1)
     expect(component.find('a')).toHaveLength(0)
   })
@@ -42,7 +40,7 @@ describe('Heading component', () => {
     const headingList = markdownToHeadingList(markdown)
 
     const component = mount(
-      <Heading headingList={headingList} rootId={rootId} hyperlink={true} />
+      <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h-1')
   })
@@ -52,9 +50,7 @@ describe('Heading component', () => {
       '```markdown\n# h1\n## h2\n```\n\n```python\n# comment\n```'
     const headingList = markdownToHeadingList(markdown)
 
-    const component = mount(
-      <Heading headingList={headingList} rootId={rootId} />
-    )
+    const component = mount(<Heading headingList={headingList} />)
     expect(component.find('li')).toHaveLength(0)
   })
 
@@ -63,7 +59,7 @@ describe('Heading component', () => {
     const headingList = markdownToHeadingList(markdown)
 
     const component = mount(
-      <Heading headingList={headingList} rootId={rootId} hyperlink={true} />
+      <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h1')
   })
@@ -75,7 +71,6 @@ describe('Heading component', () => {
     const component = mount(
       <Heading
         headingList={headingList}
-        rootId={rootId}
         hyperlink={true}
         blankSpaceReplaceText="_"
       />
@@ -88,7 +83,7 @@ describe('Heading component', () => {
     const headingList = markdownToHeadingList(markdown)
 
     const component = mount(
-      <Heading headingList={headingList} rootId={rootId} hyperlink={true} />
+      <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h1')
   })
@@ -98,7 +93,6 @@ describe('Heading component', () => {
     let component = mount(
       <Heading
         headingList={headingList}
-        rootId={rootId}
         ulClassName={'ul'}
         liClassName={'li'}
         anchorClassName={'anchor'}
@@ -108,7 +102,7 @@ describe('Heading component', () => {
     expect(component.find('.li')).toHaveLength(1)
     expect(component.find('.anchor')).toHaveLength(0) // Because hyperlink is false
 
-    component = mount(<Heading headingList={headingList} rootId={rootId} />)
+    component = mount(<Heading headingList={headingList} />)
     expect(component.find('.ul')).toHaveLength(0)
     expect(component.find('.li')).toHaveLength(0)
     expect(component.find('.anchor')).toHaveLength(0)
@@ -119,9 +113,7 @@ describe('Heading component', () => {
     const headingList = markdownToHeadingList(markdown)
     const rootId = 0
 
-    const component = mount(
-      <Heading headingList={headingList} rootId={rootId} />
-    )
+    const component = mount(<Heading headingList={headingList} />)
 
     const headings = component.childAt(0)
     expect(headings.find(Heading)).toHaveLength(headingList.length)

@@ -56,7 +56,7 @@ describe('extractText', () => {
     const item = headingList[0]
     const content = extractText(item.children)
     expect(content.text).toEqual('')
-    expect(content.href).toEqual('#none')
+    expect(content.href).toEqual('#')
   })
 
   test('custom hyperlink href is null', () => {
@@ -87,5 +87,35 @@ describe('extractText', () => {
     const content = extractText(item.children)
     expect(content.text).toEqual('bar h1')
     expect(content.href).toEqual('#bar-h1')
+  })
+
+  test('inlineCode', () => {
+    const markdown = '# `hoge`'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item.children)
+    expect(content.text).toEqual('hoge')
+    expect(content.href).toEqual('#hoge')
+  })
+
+  test('strong', () => {
+    const markdown = '# **strong**'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item.children)
+    expect(content.text).toEqual('strong')
+    expect(content.href).toEqual('#strong')
+  })
+
+  test('emphasis', () => {
+    const markdown = '# *emphasis*'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item.children)
+    expect(content.text).toEqual('emphasis')
+    expect(content.href).toEqual('#emphasis')
   })
 })
