@@ -1,6 +1,7 @@
 src
 example
 test
+.eslintrc.json
 .gitignore
 .prettierrc
 jest.config.ts

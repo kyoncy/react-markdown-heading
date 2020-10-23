@@ -18,7 +18,7 @@ const extractText = (
     if (content.type === 'text') {
       const text = content.value
       link.text += text
-      link.href += text.replace(/\s+/g, blankSpaceReplaceText) 
+      link.href += text.replace(/\s+/g, blankSpaceReplaceText)
     } else if (content.type === 'link') {
       const text = content.children[0]?.value as string
       link.text += text || ''
