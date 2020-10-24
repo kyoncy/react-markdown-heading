@@ -1,15 +1,13 @@
 import React, { FC } from 'react'
-import { HeadingWithId } from '../util/parseHeadingAST'
-import extractText from '../util/extractText'
+import { Heading } from '../util/parseHeadingText'
 
 interface HeadingProps {
-  headingList: HeadingWithId[]
+  headingList: Heading[]
   rootId?: number
   ulClassName?: string
   liClassName?: string
   anchorClassName?: string
   hyperlink?: boolean
-  blankSpaceReplaceText?: string
 }
 
 const Heading: FC<HeadingProps> = ({
@@ -19,7 +17,6 @@ const Heading: FC<HeadingProps> = ({
   liClassName,
   anchorClassName,
   hyperlink = false,
-  blankSpaceReplaceText = '-',
 }) => {
   const filteredList = headingList.filter((item) => item.parentId === rootId)
 
@@ -28,14 +25,15 @@ const Heading: FC<HeadingProps> = ({
   return (
     <ul className={ulClassName}>
       {filteredList.map((item, index) => {
-        const content = extractText(item.children, blankSpaceReplaceText)
+        const { text, href, duplicateCount } = item
 
+        const duplicate = duplicateCount !== 0 ? `-${duplicateCount}` : ''
         const element = hyperlink ? (
-          <a href={content.href} className={anchorClassName}>
-            {content.text}
+          <a href={href + duplicate} className={anchorClassName}>
+            {text}
           </a>
         ) : (
-          content.text
+          text
         )
 
         return (
@@ -47,7 +45,6 @@ const Heading: FC<HeadingProps> = ({
               ulClassName={ulClassName}
               liClassName={liClassName}
               hyperlink={hyperlink}
-              blankSpaceReplaceText={blankSpaceReplaceText}
             />
           </li>
         )
