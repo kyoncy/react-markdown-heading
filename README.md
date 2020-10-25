@@ -20,7 +20,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ReactMarkdownHeading from 'react-markdown-heading'
 
-const markdown = '## [h2](#foo)\n### h3\n#### h4\n### h3\n# h1\n### h3'
+const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
 
 render(
   <ReactMarkdownHeading markdown={markdown} hyperlink={true} />,
@@ -32,10 +32,10 @@ render(
 
 ## Option
 
-- `markdown` - _string_, The Markdown source to parse (**required**)
-- `ulClassName` - _string_, Class name of the ul tag (optional)
-- `liClassName` - _string_, Class name of the li tag (optional)
-- `anchorClassName` - _string_, Class name of the a tag (optional)
-- `hyperlink` - _boolean_, Add hyperlink to text (default `false`)
-- `blankSpaceReplaceText` - _string_, Replace blank space in hyperlink to this (default `-`)
-  - The markdown `## foo bar`'s hyperlink is `href="#foo-bar"`
+- **markdown** - `string`, The Markdown source to parse (**required**)
+- **ulClassName** - `string`, Class name of the ul tag (optional)
+- **liClassName** - `string`, Class name of the li tag (optional)
+- **anchorClassName** - `string`, Class name of the a tag (optional)
+- **hyperlink** - `boolean`, Add hyperlink to text (default `false`)
+- **blankSpaceReplaceText** - `string`, Replace blank space in hyperlink to this (default `-`)
+- **headingDepth** - `1 | 2 | 3 | 4 | 5 | 6`, Depth of heading to display (default `6`)

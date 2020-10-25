@@ -12,6 +12,7 @@ interface ReactMarkdownHeadingProps {
   anchorClassName?: string
   hyperlink?: boolean
   blankSpaceReplaceText?: string
+  headingDepth?: 1 | 2 | 3 | 4 | 5 | 6
 }
 
 const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
@@ -21,8 +22,9 @@ const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
   anchorClassName,
   hyperlink,
   blankSpaceReplaceText,
+  headingDepth,
 }) => {
-  const headingAst = pickHeadingFromAST(markdownToAST(markdown))
+  const headingAst = pickHeadingFromAST(markdownToAST(markdown), headingDepth)
   const headingList = parseHeadingAST(headingAst)
   const parsedHeadingList = parseHeadingText(headingList, blankSpaceReplaceText)
 

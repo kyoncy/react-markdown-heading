@@ -124,12 +124,11 @@ describe('Heading component', () => {
   test('display Heading', () => {
     const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
     const headingList = markdownToHeadingList(markdown)
-    const rootId = 0
 
     const component = mount(<Heading headingList={headingList} />)
 
     const headings = component.childAt(0)
-    expect(headings.find(Heading)).toHaveLength(headingList.length)
+    expect(headings.find(Heading)).toHaveLength(6)
     const rootUl = component.find('ul').at(0)
     expect(rootUl.children()).toHaveLength(2)
 
@@ -156,5 +155,27 @@ describe('Heading component', () => {
     // id: 6's children is []
     const thirdDepth2Ul = secondDepth1Ul.childAt(0).find('ul').at(0)
     expect(thirdDepth2Ul.find(Heading)).toHaveLength(0)
+  })
+
+  test('set headingDepth 3', () => {
+    const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
+    const headingAst = pickHeadingFromAst(markdownToAst(markdown), 3)
+    const headingList = parseHeadingText(parseHeadingAST(headingAst))
+
+    const component = mount(<Heading headingList={headingList} />)
+
+    const headings = component.childAt(0)
+    expect(headings.find(Heading)).toHaveLength(5)
+  })
+
+  test('set headingDepth 2', () => {
+    const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
+    const headingAst = pickHeadingFromAst(markdownToAst(markdown), 2)
+    const headingList = parseHeadingText(parseHeadingAST(headingAst))
+
+    const component = mount(<Heading headingList={headingList} />)
+
+    const headings = component.childAt(0)
+    expect(headings.find(Heading)).toHaveLength(2)
   })
 })
