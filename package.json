@@ -1,7 +1,7 @@
 {
   "name": "react-markdown-heading",
   "description": "Render markdown heading as React component",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "keywords": [
     "markdown",
     "react",
@@ -19,7 +19,9 @@
   "scripts": {
     "build": "esbuild src/index.ts --format=cjs --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --minify --outfile=dist/index.js",
     "start": "webpack serve",
-    "test": "jest --coverage",
+    "lint": "eslint --ext .ts,.tsx .",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
     "preversion": "npm t",
     "prepublishOnly": "run-s test build"

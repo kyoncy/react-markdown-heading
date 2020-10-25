@@ -1,12 +1,10 @@
-import type { Config } from '@jest/types';
+import type { Config } from '@jest/types'
 
 const config: Config.InitialOptions = {
-  testMatch: [
-    "**/?(*.)+(spec|test).+(ts|tsx|js)"
-  ],
+  testMatch: ['**/?(*.)+(spec|test).+(ts|tsx|js)'],
   transform: {
-    "^.+\\.(ts|tsx)$": "ts-jest"
-  }
-};
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
+}
 
-export default config;
+export default config
