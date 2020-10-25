@@ -17,7 +17,7 @@
   "author": "kyoncy <kyota.n.2014@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild src/index.ts --format=cjs --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --minify --outfile=dist/index.js",
+    "build": "esbuild src/index.ts --format=cjs --target=es6 --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --minify --outfile=dist/index.js",
     "start": "webpack serve",
     "lint": "eslint --ext .ts,.tsx .",
     "test": "jest",
