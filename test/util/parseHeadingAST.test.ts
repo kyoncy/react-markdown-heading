@@ -26,4 +26,15 @@ describe('parseHeadingAST', () => {
       expect(item.parentId).toEqual(parentIdList[index])
     })
   })
+
+  test('markdown same depth', () => {
+    const markdown = '## h2\n### h3\n### h3\n# h1\n### h3'
+    const parentIdList = [0, 1, 1, 0, 4]
+    const headingList = markdownToHeadingList(markdown)
+
+    expect(headingList).toHaveLength(5)
+    headingList.forEach((item, index) => {
+      expect(item.parentId).toEqual(parentIdList[index])
+    })
+  })
 })

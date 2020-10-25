@@ -15,7 +15,7 @@ const parseHeadingAST = (headingAST: Heading[]): HeadingWithId[] => {
   headingAST.forEach((item, index) => {
     currentHeading = Object.assign(item, { id: index + 1, parentId: 0 })
     if (item.depth > currentDepth) {
-      currentDepth++
+      currentDepth = item.depth
       currentHeading.parentId = index
       currentParent++
     } else {
