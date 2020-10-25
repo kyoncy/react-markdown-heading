@@ -25,11 +25,9 @@ const Heading: FC<HeadingProps> = ({
   return (
     <ul className={ulClassName}>
       {filteredList.map((item, index) => {
-        const { text, href, duplicateCount } = item
-
-        const duplicate = duplicateCount !== 0 ? `-${duplicateCount}` : ''
+        const { text, href } = item
         const element = hyperlink ? (
-          <a href={href + duplicate} className={anchorClassName}>
+          <a href={href} className={anchorClassName}>
             {text}
           </a>
         ) : (

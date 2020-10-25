@@ -22,6 +22,12 @@ const parseHeadingText = (
     parsedHeadingList.push({ ...item, text, href, duplicateCount })
   })
 
+  parsedHeadingList.forEach((item) => {
+    const { href, duplicateCount } = item
+    const duplicate = duplicateCount !== 0 ? `-${duplicateCount}` : ''
+    item.href = href + duplicate
+  })
+
   return parsedHeadingList
 }
 
