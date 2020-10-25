@@ -1,20 +1,24 @@
-name: lint-test
+name: npm-publish
 
-on: push
+on:
+  release:
+    types: [created]
 
 jobs:
-  lint-test:
+  npm-publish:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2-beta
         with:
           node-version: 14
+          registry-url: 'https://registry.npmjs.org'
       - uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: ${{ runner.os }}-node-
       - run: npm install
-      - run: npm run lint
-      - run: npm run test
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
