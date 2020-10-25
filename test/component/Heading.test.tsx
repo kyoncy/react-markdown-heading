@@ -5,18 +5,22 @@ import Heading from '../../src/component/Heading'
 import markdownToAst from '../../src/util/markdownToAst'
 import pickHeadingFromAst from '../../src/util/pickHeadingFromAst'
 import parseHeadingAST from '../../src/util/parseHeadingAST'
+import parseHeadingText from '../../src/util/parseHeadingText'
 
 configure({ adapter: new Adapter() })
 
 describe('Heading component', () => {
-  const markdown = '# h1'
-
-  function markdownToHeadingList(markdown: string) {
+  function markdownToHeadingList(
+    markdown: string,
+    blankSpaceReplaceText = '-'
+  ) {
     const headingAst = pickHeadingFromAst(markdownToAst(markdown))
-    return parseHeadingAST(headingAst)
+    const headingList = parseHeadingAST(headingAst)
+    return parseHeadingText(headingList, blankSpaceReplaceText)
   }
 
   test('display anchor', () => {
+    const markdown = '# h1'
     const headingList = markdownToHeadingList(markdown)
     let component = mount(
       <Heading
@@ -45,6 +49,18 @@ describe('Heading component', () => {
     expect(component.find('a').prop('href')).toEqual('#h-1')
   })
 
+  test('duplicate href', () => {
+    const markdown = '# h1\n# h1\n# h1'
+    const headingList = markdownToHeadingList(markdown)
+
+    const component = mount(
+      <Heading headingList={headingList} hyperlink={true} />
+    )
+    expect(component.find('a').at(0).prop('href')).toEqual('#h1')
+    expect(component.find('a').at(1).prop('href')).toEqual('#h1-1')
+    expect(component.find('a').at(2).prop('href')).toEqual('#h1-2')
+  })
+
   test('ignore heading in code block', () => {
     const markdown =
       '```markdown\n# h1\n## h2\n```\n\n```python\n# comment\n```'
@@ -66,14 +82,10 @@ describe('Heading component', () => {
 
   test('set blankSpaceReplaceText', () => {
     const markdown = '# h 1'
-    const headingList = markdownToHeadingList(markdown)
+    const headingList = markdownToHeadingList(markdown, '_')
 
     const component = mount(
-      <Heading
-        headingList={headingList}
-        hyperlink={true}
-        blankSpaceReplaceText="_"
-      />
+      <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h_1')
   })
@@ -89,6 +101,7 @@ describe('Heading component', () => {
   })
 
   test('display classname', () => {
+    const markdown = '# h1'
     const headingList = markdownToHeadingList(markdown)
     let component = mount(
       <Heading
