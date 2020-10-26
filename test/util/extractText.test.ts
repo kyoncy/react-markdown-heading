@@ -128,4 +128,34 @@ describe('extractText', () => {
     expect(content.text).toEqual('emphasis')
     expect(content.href).toEqual('#emphasis')
   })
+
+  test('strong and emphasis', () => {
+    const markdown = '# **strong** *emphasis*'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item.children)
+    expect(content.text).toEqual('strong emphasis')
+    expect(content.href).toEqual('#strong-emphasis')
+  })
+
+  test('emphasis in link', () => {
+    const markdown = '# [*emphasis*](example.com)'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item.children)
+    expect(content.text).toEqual('emphasis')
+    expect(content.href).toEqual('#emphasis')
+  })
+
+  test('strong in link', () => {
+    const markdown = '# [**strong**](example.com)'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item.children)
+    expect(content.text).toEqual('strong')
+    expect(content.href).toEqual('#strong')
+  })
 })
