@@ -8,7 +8,7 @@ describe('pickHeadingFromAst', () => {
   }
 
   test('only h1', () => {
-    const markdown = '# h1\n- foo\n- bar'
+    const markdown = '# h1\n- foo\n- bar\n```\n# h1\n```'
     const headingAst = markdownToHeadingAst(markdown)
 
     expect(headingAst).toHaveLength(1)
@@ -24,6 +24,16 @@ describe('pickHeadingFromAst', () => {
     headingAst.forEach((item, index) => {
       expect(item.depth).toEqual(depthList[index])
     })
+  })
+
+  test('include many headings', () => {
+    const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
+    const markdownAst = markdownToAst(markdown)
+    const headingAst = pickHeadingFromAst(markdownAst, 2)
+
+    expect(headingAst).toHaveLength(2)
+    expect(headingAst[0].depth).toEqual(2)
+    expect(headingAst[1].depth).toEqual(1)
   })
 
   test('depth 7 is not heading', () => {

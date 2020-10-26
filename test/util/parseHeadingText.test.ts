@@ -23,12 +23,17 @@ describe('parseHeadingText', () => {
   })
 
   test('case duplicate href', () => {
-    const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
+    const markdown = '## h2\n### h3\n### h3'
     const headingList = markdownToHeadingList(markdown)
 
-    expect(headingList).toHaveLength(6)
-    expect(
-      Array.from(new Set(headingList.map((item) => item.href)))
-    ).toHaveLength(6)
+    expect(headingList).toHaveLength(3)
+    expect(headingList[0].href).toEqual('#h2')
+    expect(headingList[0].duplicateCount).toEqual(0)
+
+    expect(headingList[1].href).toEqual('#h3')
+    expect(headingList[1].duplicateCount).toEqual(0)
+
+    expect(headingList[2].href).toEqual('#h3-1')
+    expect(headingList[2].duplicateCount).toEqual(1)
   })
 })
