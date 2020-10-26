@@ -47,6 +47,19 @@ describe('extractText', () => {
     expect(link.text).toEqual('h 1')
     expect(link.href).toEqual('#h_1')
   })
+
+  test('custom hyperlink text is null', () => {
+    const markdown = '# [](#foo)'
+    const headingList = markdownToHeadingList(markdown)
+
+    const phrasingContents = headingList[0].children
+    phrasingContents.forEach((content) => {
+      link = parseText(content, link)
+    })
+    expect(link.text).toEqual('')
+    expect(link.href).toEqual('#')
+  })
+
   test('emphasis', () => {
     const markdown = '# *emphasis*'
     const headingList = markdownToHeadingList(markdown)
