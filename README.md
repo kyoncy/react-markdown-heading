@@ -6,6 +6,7 @@ Render markdown headings to sidebar.
 [![install size](https://packagephobia.com/badge?p=react-markdown-heading)](https://packagephobia.com/result?p=react-markdown-heading)
 [![minified size](https://badgen.net/bundlephobia/min/react-markdown-heading)](https://bundlephobia.com/result?p=react-markdown-heading)
 [![minzipped size](https://badgen.net/bundlephobia/minzip/react-markdown-heading)](https://bundlephobia.com/result?p=react-markdown-heading)
+[![codecov](https://codecov.io/gh/kyoncy/react-markdown-heading/branch/main/graph/badge.svg?token=SOQUUD4XH1)](https://codecov.io/gh/kyoncy/react-markdown-heading)
 
 ## Install
 
