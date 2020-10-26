@@ -5,7 +5,9 @@ import Heading from '../../src/component/Heading'
 import markdownToAst from '../../src/util/markdownToAst'
 import pickHeadingFromAst from '../../src/util/pickHeadingFromAst'
 import parseHeadingAST from '../../src/util/parseHeadingAST'
-import parseHeadingText from '../../src/util/parseHeadingText'
+import parseHeadingText, {
+  Heading as HeadingType,
+} from '../../src/util/parseHeadingText'
 
 configure({ adapter: new Adapter() })
 
@@ -177,5 +179,12 @@ describe('Heading component', () => {
 
     const headings = component.childAt(0)
     expect(headings.find(Heading)).toHaveLength(2)
+  })
+
+  test('no heading', () => {
+    const headingList: HeadingType[] = []
+    const component = mount(<Heading headingList={headingList} />)
+
+    expect(component.getDOMNode()).toEqual(null)
   })
 })

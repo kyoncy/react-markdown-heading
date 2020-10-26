@@ -109,6 +109,16 @@ describe('extractText', () => {
     expect(content.href).toEqual('#strong')
   })
 
+  test('strong not have text', () => {
+    const markdown = '# ****'
+    const headingList = markdownToHeadingList(markdown)
+
+    const item = headingList[0]
+    const content = extractText(item.children)
+    expect(content.text).toEqual('****')
+    expect(content.href).toEqual('#****')
+  })
+
   test('emphasis', () => {
     const markdown = '# *emphasis*'
     const headingList = markdownToHeadingList(markdown)
