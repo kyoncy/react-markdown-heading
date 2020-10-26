@@ -1,4 +1,5 @@
 import { PhrasingContent } from 'mdast'
+import isEmptyArray from './isEmptyArray'
 
 type content = {
   text: string
@@ -19,7 +20,7 @@ const parseText = (
       break
     }
     case 'link':
-      if (content.children.length === 0) break
+      if (isEmptyArray(content.children)) break
       return parseText(content.children[0], link, blankSpaceReplaceText)
     case 'strong':
     case 'emphasis': {
