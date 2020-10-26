@@ -8,7 +8,7 @@ describe('pickHeadingFromAst', () => {
   }
 
   test('only h1', () => {
-    const markdown = '# h1\n- foo\n- bar\n```\n# h1\n```'
+    const markdown = '# h1'
     const headingAst = markdownToHeadingAst(markdown)
 
     expect(headingAst).toHaveLength(1)
@@ -39,6 +39,14 @@ describe('pickHeadingFromAst', () => {
   test('depth 7 is not heading', () => {
     const markdown = '####### h7'
     const headingAst = markdownToHeadingAst(markdown)
+
+    expect(headingAst).toHaveLength(0)
+  })
+
+  test('not heading', () => {
+    const markdown = '- foo\n- bar\n```\n# h1\n```'
+    const markdownAst = markdownToAst(markdown)
+    const headingAst = pickHeadingFromAst(markdownAst, 2)
 
     expect(headingAst).toHaveLength(0)
   })
