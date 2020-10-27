@@ -20,9 +20,7 @@ const Heading: FC<HeadingProps> = ({
 }) => {
   const filteredList = headingList.filter((item) => item.parentId === rootId)
 
-  if (filteredList.length === 0) return null
-
-  return (
+  return filteredList.length ? (
     <ul className={ulClassName}>
       {filteredList.map((item, index) => {
         const { text, href } = item
@@ -48,7 +46,7 @@ const Heading: FC<HeadingProps> = ({
         )
       })}
     </ul>
-  )
+  ) : null
 }
 
 export default Heading
