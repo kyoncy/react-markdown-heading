@@ -1,6 +1,6 @@
 # react-markdown-heading
 
-Render markdown headings to sidebar.
+Render markdown table of contents as React component.
 
 [![npm version](https://badge.fury.io/js/react-markdown-heading.svg)](https://badge.fury.io/js/react-markdown-heading)
 [![install size](https://packagephobia.com/badge?p=react-markdown-heading)](https://packagephobia.com/result?p=react-markdown-heading)

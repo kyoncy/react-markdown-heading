@@ -1,11 +1,12 @@
 {
   "name": "react-markdown-heading",
-  "description": "Render markdown heading as React component",
+  "description": "Render markdown table of contents as React component",
   "version": "0.8.1",
   "keywords": [
     "markdown",
     "react",
     "react-component",
+    "toc",
     "typescript"
   ],
   "main": "dist/index.js",
