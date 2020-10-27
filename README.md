@@ -29,14 +29,14 @@ render(
 )
 ```
 
-<kbd><img src="https://i.imgur.com/7G1VSns.png" width="100%" height="auto" alt="screen shot" /></kbd>
+<kbd><img src="https://i.imgur.com/7G1VSns.png" height="auto" alt="screen shot" /></kbd>
 
 ## Option
 
 - **markdown** - `string`, The Markdown source to parse (**required**)
 - **ulClassName** - `string`, Class name of the ul tag (optional)
 - **liClassName** - `string`, Class name of the li tag (optional)
-- **anchorClassName** - `string`, Class name of the a tag (optional)
+- **anchorClassName** - `string`, Class name of the anchor tag (optional)
 - **hyperlink** - `boolean`, Add hyperlink to text (default `false`)
 - **blankSpaceReplaceText** - `string`, Replace blank space in hyperlink to this (default `-`)
 - **headingDepth** - `1 | 2 | 3 | 4 | 5 | 6`, Depth of heading to display (default `6`)
