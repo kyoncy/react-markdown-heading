@@ -36,4 +36,20 @@ describe('parseHeadingText', () => {
     expect(headingList[2].href).toEqual('#h3-1')
     expect(headingList[2].duplicateCount).toEqual(1)
   })
+
+  test('case duplicate href with blankSpaceReplaceText', () => {
+    const markdown = '## h2\n### h3\n### h3'
+    const headingAst = pickHeadingFromAst(markdownToAst(markdown))
+    const headingList = parseHeadingText(parseHeadingAST(headingAst), '_')
+
+    expect(headingList).toHaveLength(3)
+    expect(headingList[0].href).toEqual('#h2')
+    expect(headingList[0].duplicateCount).toEqual(0)
+
+    expect(headingList[1].href).toEqual('#h3')
+    expect(headingList[1].duplicateCount).toEqual(0)
+
+    expect(headingList[2].href).toEqual('#h3_1')
+    expect(headingList[2].duplicateCount).toEqual(1)
+  })
 })
