@@ -10,7 +10,7 @@ const parseText = (
   link: content,
   blankSpaceReplaceText = '-'
 ): content => {
-  switch (content?.type) {
+  switch (content.type) {
     case 'text':
     case 'inlineCode': {
       const text = content.value
@@ -20,9 +20,10 @@ const parseText = (
     }
     case 'link':
     case 'strong':
-    case 'emphasis': {
-      return parseText(content.children[0], link, blankSpaceReplaceText)
-    }
+    case 'emphasis':
+      return content.children.length
+        ? parseText(content.children[0], link, blankSpaceReplaceText)
+        : link
   }
 
   return link
