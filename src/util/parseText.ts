@@ -21,8 +21,9 @@ const parseText = (
     case 'link':
     case 'strong':
     case 'emphasis':
-      if (!content.children.length) break
-      return parseText(content.children[0], link, blankSpaceReplaceText)
+      return content.children.length
+        ? parseText(content.children[0], link, blankSpaceReplaceText)
+        : link
   }
 
   return link
