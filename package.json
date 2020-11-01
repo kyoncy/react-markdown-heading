@@ -4,9 +4,9 @@
   "version": "1.0.1",
   "keywords": [
     "markdown",
+    "markdown-toc",
     "react",
     "react-component",
-    "toc",
     "typescript"
   ],
   "main": "dist/index.js",

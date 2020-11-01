@@ -1,13 +1,8 @@
 import path from 'path'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import webpack from 'webpack'
-import webpackDevServer from 'webpack-dev-server'
 
-interface Configuration extends webpack.Configuration {
-  devServer?: webpackDevServer.Configuration
-}
-
-const config: Configuration = {
+const config: webpack.Configuration = {
   mode: 'development',
   entry: path.resolve(__dirname, 'example/src/index.tsx'),
   module: {
