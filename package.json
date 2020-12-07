@@ -9,7 +9,8 @@
     "react-component",
     "typescript"
   ],
-  "module": "dist/index.js",
+  "module": "dist/index.mjs",
+  "main": "dist/index.cjs",
   "types": "index.d.ts",
   "repository": {
     "type": "git",
@@ -18,7 +19,9 @@
   "author": "kyoncy <kyota.n.2014@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "build": "esbuild src/index.ts --format=esm --target=es6 --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --minify --outfile=dist/index.js",
+    "build": "run-s build:esm build:cjs",
+    "build:esm": "esbuild src/index.ts --format=esm --target=es6 --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --minify --outfile=dist/index.mjs",
+    "build:cjs": "esbuild src/index.ts --format=cjs --target=es6 --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --minify --outfile=dist/index.cjs",
     "start": "webpack serve",
     "lint": "eslint --ext .ts,.tsx .",
     "test": "jest",
