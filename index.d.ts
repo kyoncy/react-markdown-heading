@@ -1,4 +1,4 @@
-import React from 'react'
+import { FC } from 'react'
 
 interface ReactMarkdownHeadingProps {
   markdown: string
@@ -10,6 +10,6 @@ interface ReactMarkdownHeadingProps {
   headingDepth?: 1 | 2 | 3 | 4 | 5 | 6
 }
 
-declare const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps>
+declare const ReactMarkdownHeading: FC<ReactMarkdownHeadingProps>
 
 export default ReactMarkdownHeading
