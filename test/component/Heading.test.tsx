@@ -185,6 +185,6 @@ describe('Heading component', () => {
     const headingList: HeadingType[] = []
     const component = mount(<Heading headingList={headingList} />)
 
-    expect(component.getDOMNode()).toEqual(null)
+    expect(component.getDOMNode()).toEqual([null])
   })
 })
