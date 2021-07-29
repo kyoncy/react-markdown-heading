@@ -9,7 +9,11 @@ const App = () => {
 
   return (
     <div>
-      <ReactMarkdownHeading markdown={value} hyperlink={true} hyperLinkPrefix="h-" />
+      <ReactMarkdownHeading
+        markdown={value}
+        hyperlink={true}
+        hyperLinkPrefix="h-"
+      />
       <textarea
         defaultValue={value}
         onChange={(event) => setValue(event.target.value)}

@@ -16,14 +16,22 @@ const parseText = (
     case 'inlineCode': {
       const text = content.value
       link.text += text
-      link.href += `${hyperlinkPrefix}${text.replace(/\s+/g, blankSpaceReplaceText)}`
+      link.href += `${hyperlinkPrefix}${text.replace(
+        /\s+/g,
+        blankSpaceReplaceText
+      )}`
       break
     }
     case 'link':
     case 'strong':
     case 'emphasis':
       return content.children.length
-        ? parseText(content.children[0], link, blankSpaceReplaceText, hyperlinkPrefix)
+        ? parseText(
+            content.children[0],
+            link,
+            blankSpaceReplaceText,
+            hyperlinkPrefix
+          )
         : link
   }
 
