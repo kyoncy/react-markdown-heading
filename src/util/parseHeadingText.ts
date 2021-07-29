@@ -15,7 +15,11 @@ const parseHeadingText = (
   const parsedHeadingList: Heading[] = []
 
   headingList.forEach((item) => {
-    const { text, href } = extractText(item.children, blankSpaceReplaceText, hyperlinkPrefix)
+    const { text, href } = extractText(
+      item.children,
+      blankSpaceReplaceText,
+      hyperlinkPrefix
+    )
     const duplicateCount = parsedHeadingList.filter(
       (item) => item.href === href
     ).length

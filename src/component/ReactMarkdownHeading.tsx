@@ -28,7 +28,11 @@ const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
 }) => {
   const headingAst = pickHeadingFromAST(markdownToAST(markdown), headingDepth)
   const headingList = parseHeadingAST(headingAst)
-  const parsedHeadingList = parseHeadingText(headingList, blankSpaceReplaceText, hyperLinkPrefix)
+  const parsedHeadingList = parseHeadingText(
+    headingList,
+    blankSpaceReplaceText,
+    hyperLinkPrefix
+  )
 
   return (
     <Heading
