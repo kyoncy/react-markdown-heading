@@ -40,3 +40,4 @@ render(
 - **hyperlink** - `boolean`, Add hyperlink to text (default `false`)
 - **blankSpaceReplaceText** - `string`, Replace blank space in hyperlink to this (default `-`)
 - **headingDepth** - `1 | 2 | 3 | 4 | 5 | 6`, Depth of heading to display (default `6`)
+- **hyperLinkPrefix** - `string`, Hyperlink prefix (default empty)

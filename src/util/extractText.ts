@@ -8,7 +8,8 @@ type content = {
 
 const extractText = (
   contents: PhrasingContent[],
-  blankSpaceReplaceText = '-'
+  blankSpaceReplaceText = '-',
+  hyperlinkPrefix = ''
 ): content => {
   let link = {
     text: '',
@@ -16,7 +17,7 @@ const extractText = (
   }
 
   contents.forEach((content) => {
-    link = parseText(content, link, blankSpaceReplaceText)
+    link = parseText(content, link, blankSpaceReplaceText, hyperlinkPrefix)
   })
 
   return link

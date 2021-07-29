@@ -8,6 +8,7 @@ interface ReactMarkdownHeadingProps {
   hyperlink?: boolean
   blankSpaceReplaceText?: string
   headingDepth?: 1 | 2 | 3 | 4 | 5 | 6
+  hyperLinkPrefix?: string
 }
 
 declare const ReactMarkdownHeading: FC<ReactMarkdownHeadingProps>

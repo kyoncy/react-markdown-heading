@@ -9,12 +9,13 @@ export interface Heading extends HeadingWithId {
 
 const parseHeadingText = (
   headingList: HeadingWithId[],
-  blankSpaceReplaceText = '-'
+  blankSpaceReplaceText = '-',
+  hyperlinkPrefix = ''
 ): Heading[] => {
   const parsedHeadingList: Heading[] = []
 
   headingList.forEach((item) => {
-    const { text, href } = extractText(item.children, blankSpaceReplaceText)
+    const { text, href } = extractText(item.children, blankSpaceReplaceText, hyperlinkPrefix)
     const duplicateCount = parsedHeadingList.filter(
       (item) => item.href === href
     ).length
