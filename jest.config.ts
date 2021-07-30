@@ -6,6 +6,12 @@ const config: Config.InitialOptions = {
   transform: {
     '^.+\\.(ts|tsx)$': 'ts-jest',
   },
+  globals: {
+    'ts-jest': {
+      useESM: true,
+    },
+  },
+  preset: 'ts-jest/presets/default-esm',
 }
 
 export default config
