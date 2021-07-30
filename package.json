@@ -24,14 +24,14 @@
     "build:cjs": "esbuild src/index.ts --format=cjs --target=es6 --bundle '--define:process.env.NODE_ENV=\"production\"' --external:\"react\" --external:\"mdast-util-from-markdown\" --minify --outfile=dist/index.cjs",
     "start": "webpack serve",
     "lint": "eslint --ext .ts,.tsx .",
-    "test": "jest",
-    "test:coverage": "jest --coverage",
-    "test:watch": "jest --watch",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "test:coverage": "NODE_OPTIONS=--experimental-vm-modules jest --coverage",
+    "test:watch": "NODE_OPTIONS=--experimental-vm-modules jest --watch",
     "preversion": "npm t",
     "prepublishOnly": "run-s test build"
   },
   "dependencies": {
-    "mdast-util-from-markdown": "0.8.5"
+    "mdast-util-from-markdown": "1.0.0"
   },
   "devDependencies": {
     "@types/enzyme": "3.10.9",
@@ -43,6 +43,7 @@
     "@typescript-eslint/eslint-plugin": "4.28.5",
     "@typescript-eslint/parser": "4.28.5",
     "@wojtekmaj/enzyme-adapter-react-17": "0.6.3",
+    "assert": "2.0.0",
     "enzyme": "3.11.0",
     "esbuild": "0.12.17",
     "eslint": "7.31.0",

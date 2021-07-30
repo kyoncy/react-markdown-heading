@@ -1,4 +1,4 @@
-import fromMarkdown from 'mdast-util-from-markdown'
+import { fromMarkdown } from 'mdast-util-from-markdown'
 import { Content } from 'mdast'
 
 const markdownToAST = (markdown: string): Content[] => {

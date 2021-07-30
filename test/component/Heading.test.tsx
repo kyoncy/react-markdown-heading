@@ -1,5 +1,5 @@
 import React from 'react'
-import { configure, mount } from 'enzyme'
+import Enzyme from 'enzyme'
 import Adapter from '@wojtekmaj/enzyme-adapter-react-17'
 import Heading from '../../src/component/Heading'
 import markdownToAst from '../../src/util/markdownToAst'
@@ -9,7 +9,7 @@ import parseHeadingText, {
   Heading as HeadingType,
 } from '../../src/util/parseHeadingText'
 
-configure({ adapter: new Adapter() })
+Enzyme.configure({ adapter: new Adapter() })
 
 describe('Heading component', () => {
   function markdownToHeadingList(
@@ -24,7 +24,7 @@ describe('Heading component', () => {
   test('display anchor', () => {
     const markdown = '# h1'
     const headingList = markdownToHeadingList(markdown)
-    let component = mount(
+    let component = Enzyme.mount(
       <Heading
         headingList={headingList}
         hyperlink={true}
@@ -36,7 +36,7 @@ describe('Heading component', () => {
     expect(component.find('.anchor')).toHaveLength(1)
     expect(component.find('a').prop('href')).toEqual('#h1')
 
-    component = mount(<Heading headingList={headingList} />)
+    component = Enzyme.mount(<Heading headingList={headingList} />)
     expect(component.find('li')).toHaveLength(1)
     expect(component.find('a')).toHaveLength(0)
   })
@@ -45,7 +45,7 @@ describe('Heading component', () => {
     const markdown = '# h 1'
     const headingList = markdownToHeadingList(markdown)
 
-    const component = mount(
+    const component = Enzyme.mount(
       <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h-1')
@@ -55,7 +55,7 @@ describe('Heading component', () => {
     const markdown = '# h1\n# h1\n# h1'
     const headingList = markdownToHeadingList(markdown)
 
-    const component = mount(
+    const component = Enzyme.mount(
       <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').at(0).prop('href')).toEqual('#h1')
@@ -68,7 +68,7 @@ describe('Heading component', () => {
       '```markdown\n# h1\n## h2\n```\n\n```python\n# comment\n```'
     const headingList = markdownToHeadingList(markdown)
 
-    const component = mount(<Heading headingList={headingList} />)
+    const component = Enzyme.mount(<Heading headingList={headingList} />)
     expect(component.find('li')).toHaveLength(0)
   })
 
@@ -76,7 +76,7 @@ describe('Heading component', () => {
     const markdown = '# h1 #####'
     const headingList = markdownToHeadingList(markdown)
 
-    const component = mount(
+    const component = Enzyme.mount(
       <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h1')
@@ -86,7 +86,7 @@ describe('Heading component', () => {
     const markdown = '# h 1'
     const headingList = markdownToHeadingList(markdown, '_')
 
-    const component = mount(
+    const component = Enzyme.mount(
       <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h_1')
@@ -96,7 +96,7 @@ describe('Heading component', () => {
     const markdown = '# [h1](#foo)'
     const headingList = markdownToHeadingList(markdown)
 
-    const component = mount(
+    const component = Enzyme.mount(
       <Heading headingList={headingList} hyperlink={true} />
     )
     expect(component.find('a').prop('href')).toEqual('#h1')
@@ -105,7 +105,7 @@ describe('Heading component', () => {
   test('display classname', () => {
     const markdown = '# h1'
     const headingList = markdownToHeadingList(markdown)
-    let component = mount(
+    let component = Enzyme.mount(
       <Heading
         headingList={headingList}
         ulClassName={'ul'}
@@ -117,7 +117,7 @@ describe('Heading component', () => {
     expect(component.find('.li')).toHaveLength(1)
     expect(component.find('.anchor')).toHaveLength(0) // Because hyperlink is false
 
-    component = mount(<Heading headingList={headingList} />)
+    component = Enzyme.mount(<Heading headingList={headingList} />)
     expect(component.find('.ul')).toHaveLength(0)
     expect(component.find('.li')).toHaveLength(0)
     expect(component.find('.anchor')).toHaveLength(0)
@@ -127,7 +127,7 @@ describe('Heading component', () => {
     const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
     const headingList = markdownToHeadingList(markdown)
 
-    const component = mount(<Heading headingList={headingList} />)
+    const component = Enzyme.mount(<Heading headingList={headingList} />)
 
     const headings = component.childAt(0)
     expect(headings.find(Heading)).toHaveLength(6)
@@ -164,7 +164,7 @@ describe('Heading component', () => {
     const headingAst = pickHeadingFromAst(markdownToAst(markdown), 3)
     const headingList = parseHeadingText(parseHeadingAST(headingAst))
 
-    const component = mount(<Heading headingList={headingList} />)
+    const component = Enzyme.mount(<Heading headingList={headingList} />)
 
     const headings = component.childAt(0)
     expect(headings.find(Heading)).toHaveLength(5)
@@ -175,7 +175,7 @@ describe('Heading component', () => {
     const headingAst = pickHeadingFromAst(markdownToAst(markdown), 2)
     const headingList = parseHeadingText(parseHeadingAST(headingAst))
 
-    const component = mount(<Heading headingList={headingList} />)
+    const component = Enzyme.mount(<Heading headingList={headingList} />)
 
     const headings = component.childAt(0)
     expect(headings.find(Heading)).toHaveLength(2)
@@ -183,7 +183,7 @@ describe('Heading component', () => {
 
   test('no heading', () => {
     const headingList: HeadingType[] = []
-    const component = mount(<Heading headingList={headingList} />)
+    const component = Enzyme.mount(<Heading headingList={headingList} />)
 
     expect(component.getDOMNode()).toEqual([null])
   })
