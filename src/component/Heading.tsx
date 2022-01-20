@@ -21,22 +21,22 @@ const Heading: FC<HeadingProps> = React.memo(
     hyperlink = false,
   }) => {
     const filteredList = headingList.filter((item) => item.parentId === rootId)
+    if (filteredList.length === 0) return null
 
-    return filteredList.length ? (
+    return (
       <ul className={ulClassName}>
         {filteredList.map((item, index) => {
           const { text, href } = item
-          const element = hyperlink ? (
-            <a href={href} className={anchorClassName}>
-              {text}
-            </a>
-          ) : (
-            text
-          )
 
           return (
             <li key={index} className={liClassName}>
-              {element}
+              {hyperlink ? (
+                <a href={href} className={anchorClassName}>
+                  {text}
+                </a>
+              ) : (
+                text
+              )}
               <Heading
                 headingList={headingList}
                 rootId={item.id}
@@ -48,7 +48,7 @@ const Heading: FC<HeadingProps> = React.memo(
           )
         })}
       </ul>
-    ) : null
+    )
   }
 )
 

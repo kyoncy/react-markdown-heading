@@ -24,15 +24,15 @@ const parseText = (
     }
     case 'link':
     case 'strong':
-    case 'emphasis':
-      return content.children.length
-        ? parseText(
-            content.children[0],
-            link,
-            blankSpaceReplaceText,
-            hyperlinkPrefix
-          )
-        : link
+    case 'emphasis': {
+      if (content.children.length === 0) break
+      return parseText(
+        content.children[0],
+        link,
+        blankSpaceReplaceText,
+        hyperlinkPrefix
+      )
+    }
     default:
       return link
   }
