@@ -82,4 +82,16 @@ describe('extractText', () => {
     expect(link.text).toEqual('emphasis')
     expect(link.href).toEqual('#emphasis')
   })
+
+  test('image in link', () => {
+    const markdown = '# ![foo](https://example.com)'
+    const headingList = markdownToHeadingList(markdown)
+
+    const phrasingContents = headingList[0].children
+    phrasingContents.forEach((content) => {
+      link = parseText(content, link)
+    })
+    expect(link.text).toEqual('')
+    expect(link.href).toEqual('#')
+  })
 })
