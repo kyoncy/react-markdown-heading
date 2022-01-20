@@ -33,6 +33,8 @@ const parseText = (
             hyperlinkPrefix
           )
         : link
+    default:
+      return link
   }
 
   return link
