@@ -1,7 +1,7 @@
 {
   "name": "react-markdown-heading",
   "description": "Render markdown table of contents as React component",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "keywords": [
     "markdown",
     "markdown-toc",
