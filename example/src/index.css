@@ -1,0 +1,22 @@
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.activeLi {
+  position: relative;
+}
+.activeLi::before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  left: -20px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  background-color: green;
+}
+
+.activeAnchor {
+  color: red;
+}

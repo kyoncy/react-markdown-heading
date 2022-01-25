@@ -32,8 +32,8 @@ const Heading: FC<HeadingProps> = memo(
     return (
       <ul className={classnames(ulClassName)}>
         {filteredList.map((item, index) => {
-          const { text, href } = item
-          const isActive = activeHeading?.map((x) => x.href)?.includes(href)
+          const { text, href, id } = item
+          const isActive = activeHeading?.map((x) => x.id)?.includes(id)
 
           return (
             <li
@@ -60,6 +60,8 @@ const Heading: FC<HeadingProps> = memo(
                 liClassName={liClassName}
                 hyperlink={hyperlink}
                 activeHeading={activeHeading}
+                activeLiClassName={activeLiClassName}
+                activeAnchorClassName={activeAnchorClassName}
               />
             </li>
           )

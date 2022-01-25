@@ -2,6 +2,7 @@ import React from 'react'
 import { render } from 'react-dom'
 import ReactMarkdownHeading from '../../src/index'
 import { Heading } from '../../src/util/parseHeadingText'
+import './index.css'
 
 const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h 3'
 
@@ -16,9 +17,10 @@ const App = () => {
         hyperlink={true}
         hyperLinkPrefix="h-"
         onChangeHeading={(headingList) => {
-          setActiveHeading([headingList[0]])
+          setActiveHeading([headingList[2]])
         }}
         liClassName="li"
+        activeLiClassName="activeLi"
         activeAnchorClassName="activeAnchor"
         activeHeading={activeHeading}
       />
