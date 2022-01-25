@@ -41,3 +41,7 @@ render(
 - **blankSpaceReplaceText** - `string`, Replace blank space in hyperlink to this (default `-`)
 - **headingDepth** - `1 | 2 | 3 | 4 | 5 | 6`, Depth of heading to display (default `6`)
 - **hyperLinkPrefix** - `string`, Hyperlink prefix (default empty)
+- **onChangeHeading** - `(headingList: HeadingType[]) => void`, Change event handler (optional)
+- **activeHeading** - `HeadingType[]`, Designate active heading list (optional)
+- **activeLiClassName** - `string`, Class name of the active li tag (optional)
+- **activeAnchorClassName** - `string`, Class name of the active anchor tag (optional)

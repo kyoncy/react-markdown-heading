@@ -1,9 +1,11 @@
-import React from 'react'
+import { useEffect, useMemo } from 'react'
 import Heading from './Heading'
 import markdownToAST from '../util/markdownToAst'
 import pickHeadingFromAST from '../util/pickHeadingFromAst'
 import parseHeadingAST from '../util/parseHeadingAST'
-import parseHeadingText from '../util/parseHeadingText'
+import parseHeadingText, {
+  Heading as HeadingType,
+} from '../util/parseHeadingText'
 
 interface ReactMarkdownHeadingProps {
   markdown: string
@@ -14,6 +16,10 @@ interface ReactMarkdownHeadingProps {
   blankSpaceReplaceText?: string
   headingDepth?: 1 | 2 | 3 | 4 | 5 | 6
   hyperLinkPrefix?: string
+  onChangeHeading?: (headingList: HeadingType[]) => void
+  activeLiClassName?: string
+  activeAnchorClassName?: string
+  activeHeading?: HeadingType[]
 }
 
 const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
@@ -25,14 +31,23 @@ const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
   blankSpaceReplaceText,
   headingDepth,
   hyperLinkPrefix,
+  onChangeHeading,
+  activeLiClassName,
+  activeAnchorClassName,
+  activeHeading,
 }) => {
   const headingAst = pickHeadingFromAST(markdownToAST(markdown), headingDepth)
-  const headingList = parseHeadingAST(headingAst)
-  const parsedHeadingList = parseHeadingText(
-    headingList,
-    blankSpaceReplaceText,
-    hyperLinkPrefix
+  const headingList = useMemo(() => parseHeadingAST(headingAst), [headingAst])
+  const parsedHeadingList = useMemo(
+    () => parseHeadingText(headingList, blankSpaceReplaceText, hyperLinkPrefix),
+    [headingList]
   )
+
+  useEffect(() => {
+    if (onChangeHeading) {
+      onChangeHeading(parsedHeadingList)
+    }
+  }, [parsedHeadingList])
 
   return (
     <Heading
@@ -41,6 +56,9 @@ const ReactMarkdownHeading: React.FC<ReactMarkdownHeadingProps> = ({
       liClassName={liClassName}
       anchorClassName={anchorClassName}
       hyperlink={hyperlink}
+      activeLiClassName={activeLiClassName}
+      activeAnchorClassName={activeAnchorClassName}
+      activeHeading={activeHeading}
     />
   )
 }
