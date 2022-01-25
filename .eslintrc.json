@@ -29,6 +29,6 @@
   "rules": {
     "prettier/prettier": "error",
     "react/prop-types": "off",
-    "react/display-name": "off",
+    "react/display-name": "off"
   }
 }
