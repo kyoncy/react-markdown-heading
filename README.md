@@ -24,12 +24,20 @@ import ReactMarkdownHeading from 'react-markdown-heading'
 const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h3'
 
 render(
-  <ReactMarkdownHeading markdown={markdown} hyperlink={true} />,
+  <ReactMarkdownHeading
+    markdown={markdown}
+    hyperlink={true}
+    onChangeHeading={(headingList) => {
+      console.log(headingList)
+    }}
+    liClassName="li"
+    activeAnchorClassName="activeAnchor"
+  />,
   document.getElementById('root')
 )
 ```
 
-<kbd><img src="https://i.imgur.com/7G1VSns.png" height="auto" alt="screen shot" /></kbd>
+<kbd><img src="https://i.imgur.com/eI7q96p.png" height="auto" alt="screen shot" /></kbd>
 
 ## Option
 
