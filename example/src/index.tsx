@@ -1,11 +1,13 @@
 import React from 'react'
 import { render } from 'react-dom'
 import ReactMarkdownHeading from '../../src/index'
+import { Heading } from '../../src/util/parseHeadingText'
 
 const markdown = '## h2\n### h3\n#### h4\n### h3\n# h1\n### h 3'
 
 const App = () => {
   const [value, setValue] = React.useState(markdown)
+  const [activeHeading, setActiveHeading] = React.useState<Heading[]>([])
 
   return (
     <div>
@@ -13,6 +15,12 @@ const App = () => {
         markdown={value}
         hyperlink={true}
         hyperLinkPrefix="h-"
+        onChangeHeading={(headingList) => {
+          setActiveHeading([headingList[0]])
+        }}
+        liClassName="li"
+        activeAnchorClassName="activeAnchor"
+        activeHeading={activeHeading}
       />
       <textarea
         defaultValue={value}
